@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <p>Выберите любимого персонажа:</p>
@@ -14,24 +15,27 @@
     </datalist></p>
 
 <!--<form action="">-->
-    <div>
+    <div class="select-group">
         <label for="selectSend">Откуда</label>
         <select class="location" name="" id="selectSend"></select>
     </div>
-    <div>
+    <div class="select-group active">
         <label for="selectGet">Куда</label>
         <select class="location" name="" id="selectGet"></select>
     </div>
-    <div>
+    <div class="select-group active">
         <label for="selectWeight">Вес (кг)</label>
         <select name="" id="selectWeight"></select>
     </div>
     <button type="button">Рассчитать</button>
+<div class="clear"></div>
 <!--</form>-->
 
-<div>
-    <span id="labelPrice"></span><span id="price"></span><br>
-    <span id="labelTerm"></span><span id="term"></span><br>
+<div class="result-group not-active">
+    Стоимость(руб)<div class="result" id="price"></div>
+</div>
+<div class="result-group not-active">
+    Срок(дней)<div class="result" id="term"></div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="./main.js"></script>

@@ -26,8 +26,7 @@ $(function () {
             '&weight=' + encodeURIComponent($("#selectWeight").val()),
             rsp = dataResult.rsp;
         console.log(params);
-        $('#labelPrice').text('Стоимость(руб) ');
-        $('#labelTerm').text('Срок(дней) ');
+        $('div').removeClass('not-active');
         $('#price').text(rsp.price);
         $('#term').text(rsp.term.max + '-' + rsp.term.min);
     });

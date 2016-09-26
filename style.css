@@ -1,0 +1,37 @@
+body {
+    width: 50%;
+    margin: auto;
+    color: gray;
+}
+
+.select-group,
+.result-group{
+    padding: 10px;
+}
+
+select {
+    float: right;
+    width: 400px;
+    border-radius: 8px;
+    border-color: lightgrey;
+    text-transform: lowercase;
+}
+
+button {
+    float: right;
+    margin: 10px;
+}
+
+.result-group.not-active {
+    display: none;
+}
+
+.result {
+    display: inline-block;
+    width: 400px;
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
