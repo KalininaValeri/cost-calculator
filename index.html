@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
+<p>Выберите любимого персонажа:</p>
+<p><input list="character">
+    <datalist id="character">
+        <option value="Чебурашка"></option>
+        <option value="Крокодил Гена"></option>
+        <option value="Шапокляк"></option>
+    </datalist></p>
+
 <!--<form action="">-->
     <div>
         <label for="selectSend">Откуда</label>
@@ -22,8 +30,8 @@
 <!--</form>-->
 
 <div>
-    <span></span><span></span><br>
-    <span></span><span></span><br>
+    <span id="labelPrice"></span><span id="price"></span><br>
+    <span id="labelTerm"></span><span id="term"></span><br>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="./main.js"></script>

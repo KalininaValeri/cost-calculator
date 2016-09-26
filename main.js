@@ -23,7 +23,12 @@ $(function () {
     $('button').click(function(){
         var params = 'http://emspost.ru/api/rest?method=ems.calculate&from=' + encodeURIComponent($("#selectSend").val()) +
             '&to=' + encodeURIComponent($("#selectGet").val()) +
-            '&weight=' + encodeURIComponent($("#selectWeight").val());
+            '&weight=' + encodeURIComponent($("#selectWeight").val()),
+            rsp = dataResult.rsp;
         console.log(params);
+        $('#labelPrice').text('Стоимость(руб) ');
+        $('#labelTerm').text('Срок(дней) ');
+        $('#price').text(rsp.price);
+        $('#term').text(rsp.term.max + '-' + rsp.term.min);
     });
 });
