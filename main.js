@@ -2,22 +2,35 @@ var dataLocation = {"rsp":{"stat":"ok","locations":[{"value":"city--abakan","nam
     dataWeight = {"rsp":{"stat":"ok","max_weight":"31.5"}};
     dataResult = {"rsp":{"stat":"ok","price":"1260","term":{"min":"6","max":"9"}}};
 
+$.ajax({
+    url: 'http://emspost.ru/api/rest/?method=ems.get.max.weight',
+    success: function(){
+        alert('Load was performed.');
+    }
+});
+
 function formSelectLocation() {
     $(dataLocation.rsp.locations).each(function (index, element) {
-        $(".location").append( $('<option value="' +element.value+ '">' +element.name+ '</option>'));
+        var str;
+        str = element.name;
+
+        $(".location").append( $('<option value="' +element.value+ '">' + str.charAt(0).toUpperCase() + str.substr(1).toLowerCase() + '</option>'));
     })
 }
 
 function formSelectWeight() {
     var i = 0;
     while (i < dataWeight.rsp.max_weight) {
-        $("#selectWeight").append( $('<option value="' + (i + 0.1).toFixed(1) + '">' + i.toFixed(1) + '-' + (i + 0.1).toFixed(1) + '</option>'));
+        $("#selectWeight").append( $('<option value="' + (i + 0.1).toFixed(1) + '">' + i.toFixed(1) + '-' +
+            (i + 0.1).toFixed(1) + '</option>'));
         i = i + 0.1;
     }
 }
 
 $(function () {
     formSelectLocation();
+
+
     formSelectWeight();
 
     $('button').click(function(){
