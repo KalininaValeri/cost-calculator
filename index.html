@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<!--<form action="">-->
+<form action="">
     <div class="select-group">
         <label for="selectSend">Откуда</label>
         <select class="location" name="" id="selectSend"></select>
@@ -19,9 +19,9 @@
         <label for="selectWeight">Вес (кг)</label>
         <select name="" id="selectWeight"></select>
     </div>
-    <button type="button">Рассчитать</button>
+    <button type="submit">Рассчитать</button>
 <div class="clear"></div>
-<!--</form>-->
+</form>
 
 <div class="result-group not-active">
     Стоимость(руб)<div class="result" id="price"></div>
@@ -29,7 +29,10 @@
 <div class="result-group not-active">
     Срок(дней)<div class="result" id="term"></div>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="./main.js"></script>
 </body>
 </html>
+
+
