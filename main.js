@@ -6,21 +6,19 @@ function formSelectLocation(locations) {
         var optionText = str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 
         $location.append(
-            $('<option value="' + element.value + '">' + optionText + '</option>') //точка с запятой
+            $('<option value="' + element.value + '">' + optionText + '</option>')
         );
     })
 }
 
 function formSelectWeight(max_weight) {
-    var i = 0;
     var $selectWeight = $('#selectWeight');
 
-    while (i < max_weight) { // цикл for в себе содержит увеличение инкремента, и больше туту подходит (дополнительно, по желанию)
+    for (var i = 0; i < max_weight; i = i + 0.1) {
+        console.log('for');
         $selectWeight.append(
             $('<option value="' + (i + 0.1).toFixed(1) + '">' + i.toFixed(1) + '-' + (i + 0.1).toFixed(1) + '</option>') //точка с запятой
         );
-
-        i = i + 0.1;
     }
 }
 
@@ -32,7 +30,6 @@ $(function () {
         data: {
             format: 'json'
         },
-        // пустая строка, ненужна!
         success: function (response) {
             formSelectLocation(response.rsp.locations);
         }
@@ -45,16 +42,16 @@ $(function () {
         data: {
             format: 'json'
         },
-// пустая строка, ненужна!
         success: function (response) {
-// пустая строка, ненужна!
+            console.log('2');
+
             formSelectWeight(response.rsp.max_weight);
         }
     });
 
-    $( "form" ).on( "submit", function( event ) {
+    $("form").on("submit", function (event) {
         event.preventDefault();
-        var params ='http://emspost.ru/api/rest?method=ems.calculate&' +  $( this ).serialize();
+        var params = 'http://emspost.ru/api/rest?method=ems.calculate&' + $(this).serialize();
         console.log(params);
 
         $.ajax({
@@ -62,6 +59,9 @@ $(function () {
             jsonp: 'callback',
             // нет обработки начала запроса, повешать прелоадер например или еще что то (дополнительно, по желанию), снять когда запрос вернется
             dataType: 'jsonp',
+            /* beforeSend: function () {
+             $('#spanimg').html('<img id="imgcode" src="ajaxform/loadinfo.gif">');
+             },*/
             data: {
                 format: 'json'
             },
