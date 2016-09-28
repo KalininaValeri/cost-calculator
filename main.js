@@ -32,6 +32,9 @@ $(function () {
         },
         success: function (response) {
             formSelectLocation(response.rsp.locations);
+        },
+        error: function () {
+            $('#spanimg').text('Ошибка загрузки');
         }
     });
 
@@ -46,6 +49,9 @@ $(function () {
             console.log('2');
 
             formSelectWeight(response.rsp.max_weight);
+        },
+        error: function () {
+            $('#spanimg').text('Ошибка загрузки');
         }
     });
 
@@ -57,22 +63,23 @@ $(function () {
         $.ajax({
             url: params,
             jsonp: 'callback',
-            // нет обработки начала запроса, повешать прелоадер например или еще что то (дополнительно, по желанию), снять когда запрос вернется
             dataType: 'jsonp',
-            /* beforeSend: function () {
-             $('#spanimg').html('<img id="imgcode" src="ajaxform/loadinfo.gif">');
-             },*/
+             beforeSend: function () {
+             $('#spanimg').html('<img id="imgcode" src="./img/preloder.gif">');
+             },
             data: {
                 format: 'json'
             },
-// пустая строка, ненужна!
             success: function (response) {
-                $('div').removeClass('not-active'); // не конкретно, дивов может стать больше
+                $('#imgcode').remove();
+                $('.result-group').removeClass('not-active'); // не конкретно, дивов может стать больше
                 // стоит скрвватиь эти элеменьы если значения в форме были изменены? (дополнительно, по желанию)
                 $('#price').text(response.rsp.price);
                 $('#term').text(response.rsp.term.min + '-' + response.rsp.term.max);
+            },
+            error: function () {
+                $('#spanimg').text('Ошибка загрузки');
             }
-            // не обрабатываешь ошибки ни в одном запросе, если что то случитьсяпользователь даже не узнает, не попробует еще раз и перестанет пользоваться сервисом (дополнительно, по желанию)
         });
     });
 });
