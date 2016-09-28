@@ -15,9 +15,8 @@ function formSelectWeight(max_weight) {
     var $selectWeight = $('#selectWeight');
 
     for (var i = 0; i < max_weight; i = i + 0.1) {
-        console.log('for');
         $selectWeight.append(
-            $('<option value="' + (i + 0.1).toFixed(1) + '">' + i.toFixed(1) + '-' + (i + 0.1).toFixed(1) + '</option>') //точка с запятой
+            $('<option value="' + (i + 0.1).toFixed(1) + '">' + i.toFixed(1) + '-' + (i + 0.1).toFixed(1) + '</option>')
         );
     }
 }
@@ -46,8 +45,6 @@ $(function () {
             format: 'json'
         },
         success: function (response) {
-            console.log('2');
-
             formSelectWeight(response.rsp.max_weight);
         },
         error: function () {
@@ -58,7 +55,6 @@ $(function () {
     $("form").on("submit", function (event) {
         event.preventDefault();
         var params = 'http://emspost.ru/api/rest?method=ems.calculate&' + $(this).serialize();
-        console.log(params);
 
         $.ajax({
             url: params,
@@ -72,8 +68,7 @@ $(function () {
             },
             success: function (response) {
                 $('#imgcode').remove();
-                $('.result-group').removeClass('not-active'); // не конкретно, дивов может стать больше
-                // стоит скрвватиь эти элеменьы если значения в форме были изменены? (дополнительно, по желанию)
+                $('.result-group').removeClass('not-active');
                 $('#price').text(response.rsp.price);
                 $('#term').text(response.rsp.term.min + '-' + response.rsp.term.max);
             },
