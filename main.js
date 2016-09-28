@@ -1,8 +1,9 @@
-function formSelectLocation(locations) {
+function createOptionsLocation(locations) {
     var $location = $('.location');
 
-    $(locations).each(function (index, element) {
+    $(_.sortBy(locations, ['name'])).each(function (index, element) {
         var str = element.name;
+
         var optionText = str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 
         $location.append(
@@ -11,7 +12,7 @@ function formSelectLocation(locations) {
     })
 }
 
-function formSelectWeight(max_weight) {
+function createOptionsWeight(max_weight)  {
     var $selectWeight = $('#selectWeight');
 
     for (var i = 0; i < max_weight; i = i + 0.1) {
@@ -30,10 +31,10 @@ $(function () {
             format: 'json'
         },
         success: function (response) {
-            formSelectLocation(response.rsp.locations);
+            createOptionsLocation(response.rsp.locations);
         },
         error: function () {
-            $('#spanimg').text('Ошибка загрузки');
+            $('#ui-message').text('Ошибка загрузки');
         }
     });
 
@@ -45,10 +46,10 @@ $(function () {
             format: 'json'
         },
         success: function (response) {
-            formSelectWeight(response.rsp.max_weight);
+            createOptionsWeight(response.rsp.max_weight);
         },
         error: function () {
-            $('#spanimg').text('Ошибка загрузки');
+            $('#ui-message').text('Ошибка загрузки');
         }
     });
 
@@ -61,19 +62,21 @@ $(function () {
             jsonp: 'callback',
             dataType: 'jsonp',
              beforeSend: function () {
-             $('#spanimg').html('<img id="imgcode" src="./img/preloder.gif">');
+             $('#ui-message').html('<img id="preloder" src="./img/preloder.gif">');
              },
             data: {
                 format: 'json'
             },
             success: function (response) {
-                $('#imgcode').remove();
+                $('#preloder').remove();
                 $('.result-group').removeClass('not-active');
                 $('#price').text(response.rsp.price);
                 $('#term').text(response.rsp.term.min + '-' + response.rsp.term.max);
             },
             error: function () {
-                $('#spanimg').text('Ошибка загрузки');
+                $('#preloder').remove();
+                $('#ui-message').text('Ошибка загрузки');
+                $('.result-group').addClass('not-active');
             }
         });
     });
